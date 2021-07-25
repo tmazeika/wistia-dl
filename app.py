@@ -18,5 +18,5 @@ def index():
             if key in f.read():
                 return ''
     with open(filename, 'a') as f:
-        f.write(f'curl "https://embedwistia-a.akamaihd.net/deliveries/{key}/file.mp4" --output "{i:03}_{title}.mp4"\n')
+        f.write(f'ffmpeg -i "https://embedwistia-a.akamaihd.net/deliveries/{key}.m3u8" -vcodec libx265 -crf 28 "{i:03}_{title}.mp4"\n')
     return ''
